@@ -38,7 +38,7 @@ class ProjectTypeFinder : StartupActivity {
         return when (walker.projectType) {
             VisibleFilesFinder.Companion.TYPES.MAVEN -> "This is Maven${okMessage}"
             VisibleFilesFinder.Companion.TYPES.GRADLE -> "This is Gradle${okMessage}"
-            VisibleFilesFinder.Companion.TYPES.OTHER -> "Opps..\nCan't detect project type"
+            VisibleFilesFinder.Companion.TYPES.OTHER -> "This is unknown project"
         }
     }
 }
