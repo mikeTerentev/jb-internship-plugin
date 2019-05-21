@@ -1,0 +1,28 @@
+plugins {
+    id 'org.jetbrains.intellij' version '0.4.8'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.31'
+}
+
+group 'ru.itmo.rain.terentev'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2019.1.1'
+    pluginName 'type-finder'
+    intellij.updateSinceUntilBuild false
+}
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
