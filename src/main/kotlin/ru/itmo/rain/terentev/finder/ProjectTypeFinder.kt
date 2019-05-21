@@ -15,7 +15,7 @@ import com.intellij.openapi.vfs.LocalFileSystem
 class ProjectTypeFinder : StartupActivity {
     override fun runActivity(project: Project) {
         val projectDir = Paths.get(project.basePath)
-        val walker = VisibleFilesFinder(projectDir)
+        val walker = ProjectWalker(projectDir)
         Files.walkFileTree(projectDir, walker)
 
         val balloonNotifications = NotificationGroup("Notification group", NotificationDisplayType.BALLOON, true)
@@ -33,12 +33,12 @@ class ProjectTypeFinder : StartupActivity {
         Notifications.Bus.notify(resultNotification, project);
     }
 
-    private fun genMessage(walker: VisibleFilesFinder): String {
+    private fun genMessage(walker: ProjectWalker): String {
         val okMessage = " <a href=\"${walker.buildFileUrl}\" target=\"blank\">project</a> </html>"
         return when (walker.projectType) {
-            VisibleFilesFinder.Companion.TYPES.MAVEN -> "This is Maven${okMessage}"
-            VisibleFilesFinder.Companion.TYPES.GRADLE -> "This is Gradle${okMessage}"
-            VisibleFilesFinder.Companion.TYPES.OTHER -> "This is unknown project"
+            ProjectWalker.Companion.TYPES.MAVEN -> "This is Maven${okMessage}"
+            ProjectWalker.Companion.TYPES.GRADLE -> "This is Gradle${okMessage}"
+            ProjectWalker.Companion.TYPES.OTHER -> "This is unknown project"
         }
     }
 }

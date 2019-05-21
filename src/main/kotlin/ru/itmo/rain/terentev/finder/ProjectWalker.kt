@@ -8,7 +8,7 @@ import java.nio.file.FileVisitResult.CONTINUE
 import java.nio.file.FileVisitResult.SKIP_SUBTREE
 import java.nio.file.FileVisitResult.TERMINATE
 
-class VisibleFilesFinder(val userDir: Path) : SimpleFileVisitor<Path>() {
+class ProjectWalker(val userDir: Path) : SimpleFileVisitor<Path>() {
     companion object {
         enum class TYPES {
             GRADLE, MAVEN, OTHER
